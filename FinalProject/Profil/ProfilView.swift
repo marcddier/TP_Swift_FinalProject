@@ -15,6 +15,8 @@ class ProfilView: UIView {
     @IBOutlet weak var newPassword: UITextField!
     @IBOutlet weak var confNewPassword: UITextField!
     
+    @IBOutlet weak var warning: UILabel!
+    
     var delegate: ProfilViewDelegate?
     
     override init (frame: CGRect) { // for using customView in code

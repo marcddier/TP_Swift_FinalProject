@@ -19,25 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfm-xa-Dri" customClass="SignInView" customModule="FinalProject" customModuleProvider="target">
-                                <rect key="frame" x="8" y="36" width="359" height="400"/>
+                                <rect key="frame" x="8" y="36" width="359" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="W47-Lb-GsM"/>
-                                </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-d7-IAr" customClass="SignUpView" customModule="FinalProject" customModuleProvider="target">
-                                <rect key="frame" x="8" y="36" width="359" height="400"/>
+                                <rect key="frame" x="8" y="36" width="359" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="Yfc-x4-BYf"/>
-                                </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NzO-Kh-XVz" customClass="ProfilView" customModule="FinalProject" customModuleProvider="target">
-                                <rect key="frame" x="16" y="28" width="343" height="400"/>
+                                <rect key="frame" x="16" y="28" width="343" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="JbT-VQ-bzu"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,7 +41,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kfm-xa-Dri" secondAttribute="trailing" constant="8" id="Ncf-vX-7YY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NzO-Kh-XVz" secondAttribute="trailing" constant="16" id="PPQ-j7-Kvw"/>
                             <constraint firstItem="NzO-Kh-XVz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Wfu-7g-6zN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NzO-Kh-XVz" secondAttribute="bottom" constant="16" id="Wty-lQ-QBw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Kfm-xa-Dri" secondAttribute="bottom" constant="16" id="aUZ-RV-KSN"/>
                             <constraint firstItem="Kfm-xa-Dri" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="e0e-i0-9Jl"/>
+                            <constraint firstAttribute="bottom" secondItem="RCp-d7-IAr" secondAttribute="bottom" constant="16" id="lQ9-mc-5vL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RCp-d7-IAr" secondAttribute="trailing" constant="8" id="zPd-jc-5DB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

@@ -17,13 +17,11 @@ class LoginViewController: UIViewController, SignInViewDelegate, SignUpViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         signInView.delegate = self
         signUpView.delegate = self
         profilView.delegate = self
-        
     }
-
 
 
     func signIn() {
@@ -33,16 +31,19 @@ class LoginViewController: UIViewController, SignInViewDelegate, SignUpViewDeleg
         
         if RegisterUser.instance.user == nil {
             print("Please register first")
+            signInView.warning.text = "Please register first"
             return
         }
         
         if email != RegisterUser.instance.user?.email || password != RegisterUser.instance.user?.password {
             print("Unable to find a match with this pair of email / password")
+            signInView.warning.text = "Unable to find a match with this pair of email / password"
             return
         }
         
         profilView.myEmail.text = email
         print("Successful login")
+        signInView.warning.text = ""
         
         signInView.isHidden = true
         profilView.isHidden = false
@@ -51,6 +52,8 @@ class LoginViewController: UIViewController, SignInViewDelegate, SignUpViewDeleg
     func toSignUp() {
         signInView.isHidden = true
         signUpView.isHidden = false
+        
+        signInView.warning.text = ""
     }
     
     func signUp() {
@@ -58,21 +61,38 @@ class LoginViewController: UIViewController, SignInViewDelegate, SignUpViewDeleg
         let email: String = signUpView.email.text!
         if email == ""{
             print("email is nil")
+            signUpView.warning.text = "email is empty"
             return
         }
+        if !isValidEmail(testStr: email) {
+            print("email is not valid")
+            signUpView.warning.text = "email is not valid"
+            return
+        }
+        
         let password: String = signUpView.password.text!
-        if password == ""{
+        if password == "" {
             print("password is nil")
+            signUpView.warning.text = "password is empty"
             return
         }
+        if !isValidPassword(password: password) {
+            print("invalid password, 4 character at least")
+            signUpView.warning.text = "invalid password, 4 character at least"
+            return
+        }
+        
+        
         let confPassword: String = signUpView.confirmPassword.text!
         if confPassword == ""{
             print("confirm password is nil")
+            signUpView.warning.text = "password confirmation is empty"
             return
         }
         
         if confPassword != password {
             print("Passwords are not matching")
+            signUpView.warning.text = "Passwords are not matching"
             return
         }
         
@@ -81,6 +101,7 @@ class LoginViewController: UIViewController, SignInViewDelegate, SignUpViewDeleg
         RegisterUser.instance.changeUser(user: newUser)
         
         print("Successful sign up")
+        signUpView.warning.text = ""
 
         signUpView.isHidden = true
         signInView.isHidden = false
@@ -91,35 +112,57 @@ class LoginViewController: UIViewController, SignInViewDelegate, SignUpViewDeleg
         signUpView.isHidden = true
         signInView.isHidden = false
         
+        signUpView.warning.text = ""
     }
     
     func changePassword() {
         let password: String = profilView.newPassword.text!
+        if !isValidPassword(password: password) {
+            print("invalid password, 4 character at least")
+            profilView.warning.text = "invalid password, 4 character at least"
+            return
+        }
         if password == ""{
             print("password is nil")
-            warningLabel.text = "password is empty"
+            profilView.warning.text = "password is empty"
             return
         }
         let confPassword: String = profilView.confNewPassword.text!
         if confPassword == ""{
             print("confirm password is nil")
-            warningLabel.text = "confirm password is empty"
+            profilView.warning.text = "password confirmation is empty"
             return
         }
         
         if confPassword != password {
             print("Passwords are not matching")
-            warningLabel.text = "Passwords are not matching"
+            profilView.warning.text = "Passwords are not matching"
             return
         }
         
         RegisterUser.instance.changePassword(password: password)
         print("Password change is a success")
+        profilView.warning.text = "Password change is a success"
     }
     
     func logout() {
         profilView.isHidden = true
         signInView.isHidden = false
 
+        profilView.warning.text = ""
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
+    func isValidPassword(password: String) -> Bool {
+        let passRegEx = "[A-Z0-9a-z._%+-]{4,64}"
+        
+        let passTest = NSPredicate(format:"SELF MATCHES %@", passRegEx)
+        return passTest.evaluate(with: password)
     }
 }

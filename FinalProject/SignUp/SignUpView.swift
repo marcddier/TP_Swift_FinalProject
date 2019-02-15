@@ -15,6 +15,8 @@ class SignUpView: UIView {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     
+    @IBOutlet weak var warning: UILabel!
+    
     var delegate: SignUpViewDelegate?
     
     override init (frame: CGRect) { // for using customView in code

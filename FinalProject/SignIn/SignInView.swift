@@ -14,6 +14,8 @@ class SignInView: UIView {
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var warning: UILabel!
+    
     var delegate: SignInViewDelegate?
     
     override init (frame: CGRect) { // for using customView in code
